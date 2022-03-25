@@ -1,6 +1,24 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 function App() {
+
+  const [eventsList, addAllEvents] = useState('')
+
+  useEffect(() => {
+    getEvents();
+  }, [])
+
+  const getEvents = () => {
+    axios.get('http://localhost:5000/event/')
+      .then((result) => {
+        const data = result.data
+        addAllEvents(data)
+      })
+      .catch(() => {
+        console.log('Error')
+      })
+  }
 
   var listOfEvents = []
 
@@ -48,11 +66,10 @@ function App() {
       .catch(err => console.log(err))
   }
 
-  consolidateEvents()
-
   return (
     <div className="App">
-      <button className='btn' onClick={eventDatabase}>hello world</button>
+      <button className='btn' onClick={consolidateEvents}>Consolidate events</button>
+      <button className='btn' onClick={eventDatabase}>Add to database</button>
     </div>
   );
 }

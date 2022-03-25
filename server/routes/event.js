@@ -2,9 +2,13 @@ const router = require('express').Router();
 let Event = require('../models/event.model');
 
 router.route('/').get((req, res) => {
-    User.find()
-        .then(users => res.json(users))
-        .catch(err => res.status(400).json('Error: ' + err));
+    Event.find({}, function(err, result) {
+        if (err) {
+          res.send(err);
+        } else {
+          res.send(result);
+        }
+      });
 });
 
 router.route('/add').post((req, res) => {
