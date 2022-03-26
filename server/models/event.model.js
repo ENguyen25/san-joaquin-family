@@ -1,26 +1,31 @@
 const mongoose = require('mongoose');
+require('mongoose-type-url');
 
 const Schema = mongoose.Schema;
 
 const eventSchema = new Schema({
     name: {
         type: String,
-        required: true,
         trim: true,
     },
     description: {
         type: String,
-        required: true,
+        trim: true,
+    },
+    eventURL: {
+        type: String,
+        trim: true,
+    },
+    imageURL: {
+        type: String,
         trim: true,
     },
     startTime: {
         type: Date,
-        required: true,
         trim: true,
     },
     endTime: {
         type: Date,
-        required: true,
         trim: true,
     },
 });
