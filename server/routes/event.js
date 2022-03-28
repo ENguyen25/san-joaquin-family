@@ -19,6 +19,8 @@ router.route('/add').post((req, res) => {
     const startTime = req.body.startTime;
     const endTime = req.body.endTime;
 
+    console.log(req.body)
+
     const newEvent = new Event({name, description, eventURL, imageURL, startTime, endTime});
 
     newEvent.save()
